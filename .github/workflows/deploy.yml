@@ -1,0 +1,37 @@
+name: Deployment
+
+on:
+  push:
+    branch:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    stems:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: set env
+        working-diretory: ./mock-test
+        run: |
+        echo MYSQL_USER=${{ secrets.MYSQL_USER }} > .env
+        echo MYSQL_HOST=${{ secrets.MYSQL_HOST }} >> .env
+        echo MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} >> .env
+        echo MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} >> .env
+        echo PORT=${{ secrets.PORT }} >> .env
+        echo MESSAGE=${{ secrets.MESSAGE }} >> .env
+
+      - name: Install dependencies of backend
+        working-diretory: ./mock-test
+        run: npm i
+
+      - name: Run Test of backend
+        working-diretory: ./mock-test
+        run: npm test
