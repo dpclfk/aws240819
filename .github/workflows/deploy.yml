@@ -2,7 +2,7 @@ name: Deployment
 
 on:
   push:
-    branch:
+    branches:
       - main
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
           node-version: "20"
 
       - name: set env
-        working-diretory: ./mock-test
+        working-directory: ./mock-test
         run: |
           echo MYSQL_USER=${{ secrets.MYSQL_USER }} > .env
           echo MYSQL_HOST=${{ secrets.MYSQL_HOST }} >> .env
@@ -29,9 +29,9 @@ jobs:
           echo MESSAGE=${{ secrets.MESSAGE }} >> .env
 
       - name: Install dependencies of backend
-        working-diretory: ./mock-test
+        working-directory: ./mock-test
         run: npm i
 
       - name: Run Test of backend
-        working-diretory: ./mock-test
+        working-directory: ./mock-test
         run: npm test
