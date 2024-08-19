@@ -27,7 +27,7 @@ import Todo from "../models/Todo";
 
 export const add = async (title: string) => {
   if (title?.length) {
-    const todo = await Todo.create({ title });
+    const todo: Todo = await Todo.create({ title });
     return todo;
     // todoList.push({
     //   id: todoId++,
@@ -41,7 +41,9 @@ export const add = async (title: string) => {
 };
 
 export const getList = async () => {
-  const todos = await Todo.findAll();
+  console.log("test3");
+  const todos: Todo[] = await Todo.findAll();
+  console.log(todos);
   return todos;
   // [...todoList];
 };
