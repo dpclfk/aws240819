@@ -34,7 +34,7 @@ export const patchTodo = async ({ id, title, isCompleted }: Todo): Promise<Todo>
     return response.data;
   } catch (error: any) {
     console.log(error.message);
-    throw new Error("Failed to update List");
+    throw new Error("Failed to Update List");
   }
 };
 
@@ -44,6 +44,6 @@ export const deleteTodo = async ({ id }: Todo): Promise<Todo> => {
     return response.data;
   } catch (error: any) {
     console.log(error.message);
-    throw new Error("Failed to update List");
+    throw new Error("Failed to Delete List");
   }
 };

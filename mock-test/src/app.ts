@@ -12,7 +12,7 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/api", (req: Request, res: Response) => {
+app.get("/api", (_req: Request, res: Response) => {
   res.status(200).send(process.env.MESSAGE || "AWS's Members");
 });
 
