@@ -9,7 +9,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    stems:
+    steps:
       - name: checkout repository
         uses: actions/checkout@v4
 
@@ -21,12 +21,12 @@ jobs:
       - name: set env
         working-diretory: ./mock-test
         run: |
-        echo MYSQL_USER=${{ secrets.MYSQL_USER }} > .env
-        echo MYSQL_HOST=${{ secrets.MYSQL_HOST }} >> .env
-        echo MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} >> .env
-        echo MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} >> .env
-        echo PORT=${{ secrets.PORT }} >> .env
-        echo MESSAGE=${{ secrets.MESSAGE }} >> .env
+          echo MYSQL_USER=${{ secrets.MYSQL_USER }} > .env
+          echo MYSQL_HOST=${{ secrets.MYSQL_HOST }} >> .env
+          echo MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} >> .env
+          echo MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} >> .env
+          echo PORT=${{ secrets.PORT }} >> .env
+          echo MESSAGE=${{ secrets.MESSAGE }} >> .env
 
       - name: Install dependencies of backend
         working-diretory: ./mock-test
