@@ -1,5 +1,9 @@
+import dotenv from "dotenv";
+dotenv.config({ path: path.join(__dirname, ".env") });
+
 import Todo from "../Todo";
 import sequelize from "../database";
+import path from "path";
 
 describe("Todo Test", () => {
   beforeAll(async () => {

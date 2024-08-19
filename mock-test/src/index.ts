@@ -1,10 +1,11 @@
 import { config } from "dotenv";
 import app from "./app";
 import router from "./controllers/todo";
-import sequelize from "./models";
-import path from "path";
 
 config({ path: path.join(__dirname, ".env") });
+
+import sequelize from "./models";
+import path from "path";
 
 app.set("port", process.env.PORT || 3001);
 
