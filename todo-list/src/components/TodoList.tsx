@@ -86,23 +86,26 @@ const TodoList = (): JSX.Element => {
       <ul>
         {/* 아래는 Component로 작성 */}
         {data?.map((item: ITodo, idx: number) => (
-          <li key={idx}>
-            {item.title}
-            {item.isCompleted ? "완료" : "미완"}
-            <input
-              type="checkbox"
-              onClick={() => {
-                completeBtn.mutate(item);
-              }}
-            ></input>
-            <button
-              onClick={() => {
-                deleteBtn.mutate(item.id);
-              }}
-            >
-              삭제
-            </button>
-          </li>
+          <>
+            <li key={idx}>{item.title}</li>
+            <div>
+              {item.isCompleted ? "완료" : "미완"}
+              <input
+                type="checkbox"
+                checked={item.isCompleted}
+                onClick={() => {
+                  completeBtn.mutate(item);
+                }}
+              ></input>
+              <button
+                onClick={() => {
+                  deleteBtn.mutate(item.id);
+                }}
+              >
+                삭제
+              </button>
+            </div>
+          </>
         ))}
         {/* <li></li> */}
       </ul>
