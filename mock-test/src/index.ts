@@ -4,6 +4,7 @@ import router from "./controllers/todo";
 import path from "path";
 
 config({ path: path.join(__dirname, ".env") });
+// config();
 
 import sequelize from "./models";
 

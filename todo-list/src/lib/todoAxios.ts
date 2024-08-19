@@ -35,3 +35,13 @@ export const patchTodo = async ({ id, title, isCompleted }: Todo): Promise<Todo>
     throw new Error("Failed to update List");
   }
 };
+
+export const deleteTodo = async ({ id }: Todo): Promise<Todo> => {
+  try {
+    const response = await instance.delete(`/todo/${id}`);
+    return response.data;
+  } catch (error: any) {
+    console.log(error.message);
+    throw new Error("Failed to update List");
+  }
+};

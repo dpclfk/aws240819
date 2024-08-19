@@ -61,6 +61,7 @@ export const patchTodo = async ({
     if (todo === null) throw new Error("not found todo item");
     if (title !== undefined) todo.title = title;
     if (isCompleted !== undefined) todo.isCompleted = isCompleted;
+    console.log(todo.dataValues);
     await todo.save();
     return todo;
   } catch (error) {

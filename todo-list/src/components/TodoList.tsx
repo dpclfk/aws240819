@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { addTodo, getList, Todo as ITodo } from "../lib/todoAxios";
+import { addTodo, deleteTodo, getList, Todo as ITodo, patchTodo, Todo } from "../lib/todoAxios";
 
 // interface IData {
 //   value?: string;
@@ -41,6 +41,32 @@ const TodoList = (): JSX.Element => {
     },
   });
 
+  const completeBtn = useMutation({
+    // mutationKey: ["complete"],
+    mutationFn: async ({ id, title, isCompleted }: Todo) => {
+      isCompleted = !isCompleted;
+      await patchTodo({ id, title, isCompleted });
+    },
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ["get", "todo"] });
+    },
+    onError: () => {
+      console.log("에러 발생");
+    },
+  });
+
+  const deleteBtn = useMutation({
+    // mutationKey: ["complete"],
+    mutationFn: async (id?: number) => {
+      await deleteTodo({ id });
+    },
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ["get", "todo"] });
+    },
+    onError: () => {
+      console.log("에러 발생");
+    },
+  });
   // const addHandler = useCallback(() => {
   //   // setList((state) => [...state, inputValue]);
   //   addTodo({ title: inputValue });
@@ -60,7 +86,23 @@ const TodoList = (): JSX.Element => {
       <ul>
         {/* 아래는 Component로 작성 */}
         {data?.map((item: ITodo, idx: number) => (
-          <li key={idx}>{item.title}</li>
+          <li key={idx}>
+            {item.title}
+            {item.isCompleted ? "완료" : "미완"}
+            <input
+              type="checkbox"
+              onClick={() => {
+                completeBtn.mutate(item);
+              }}
+            ></input>
+            <button
+              onClick={() => {
+                deleteBtn.mutate(item.id);
+              }}
+            >
+              삭제
+            </button>
+          </li>
         ))}
         {/* <li></li> */}
       </ul>

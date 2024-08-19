@@ -1,7 +1,7 @@
 import MockAdapter from "axios-mock-adapter";
 
 import instance from "./axios";
-import { addTodo, getList, patchTodo } from "./todoAxios";
+import { addTodo, deleteTodo, getList, patchTodo } from "./todoAxios";
 
 const mock = new MockAdapter(instance);
 
@@ -30,5 +30,12 @@ describe("Test Todo Axios", () => {
 
     const response = await patchTodo({ id: 1, title: "test todo list", isCompleted: true });
     expect(response).toEqual(data);
+  });
+
+  test("Delete Todo", async () => {
+    mock.onDelete("/todo/1").reply(200);
+
+    const response = await deleteTodo({ id: 1 });
+    expect(response).toBeUndefined();
   });
 });
