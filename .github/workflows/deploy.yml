@@ -267,7 +267,7 @@ jobs:
         run: |
           ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
             rm -rf /var/www/front
-            mkdir /var/www/front
+            mkdir /var/www/front'
           rsync -avz -e "ssh" ./todo-list/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/front
 
       - name: Restart Nginx
