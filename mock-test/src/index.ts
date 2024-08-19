@@ -11,7 +11,7 @@ import sequelize from "./models";
 app.set("port", process.env.PORT || 3001);
 
 app.use("/api/todo", router);
-sequelize.sync();
+sequelize.sync({ force: true });
 
 app.listen(app.get("port"), () => {
   console.log(app.get("port"), "server open");
