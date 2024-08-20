@@ -81,6 +81,16 @@ describe("Test Todo List", () => {
     // expect(listItemElem2).toHaveTextContent("first Todo");
   });
 
+  // test("patch Todo", async () => {
+  //   mock.onPatch("/todo").reply(200, [{ id: 1, title: "first Todo", isComplete: true }]);
+
+  //   const checkElem: HTMLInputElement = screen.getByRole("checkbox");
+  //   fireEvent.click(checkElem);
+
+  //   await waitFor(() => {
+  //     expect(screen.getByText("완료")).toBeInTheDocument();
+  //   });
+  // });
   // test("Check Todo is work", () => {
   //   //elems
   //   const inputElem: HTMLInputElement = screen.getByRole("textbox");
